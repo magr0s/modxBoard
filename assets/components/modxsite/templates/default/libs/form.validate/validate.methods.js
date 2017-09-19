@@ -5,19 +5,3 @@ $.validator.addMethod("eitherEmailPhone", function(value, element) {
     return isPhone || isEmail;
 
 }, "Введите номер телефона или email.");
-
-$.validator.addMethod('sum_equals', function(value, element) {
-	
-	var $element = $(element),
-		group = $element.data('equals-group'),
-		value = 0;
-		
-	$('input[data-equals-group="' + group + '"]').each(function() {
-		var $this = $(this);
-		
-        value = Math.abs(value - parseInt($this.val()));
-	});
-	
-	return value >= 0;
-	
-}, "Несоответствие значений.");

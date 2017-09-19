@@ -75,17 +75,17 @@
                         <div class="row">
 
                             <div class="input-field col s6 m4 xl3">
-                                <input type="text" id="sq_field" name="sq" data-equals-group="1">
+                                <input type="text" id="sq_field" name="sq">
                                 <label for="sq_field">Общая площадь, м<sup>2</sup></label>
                             </div>
                             
                             <div class="input-field col s6 m4 xl3">
-                                <input type="text" id="live_sq_field" name="live_sq" data-equals-group="1">
+                                <input type="text" id="live_sq_field" name="live_sq">
                                 <label for="live_sq_field">Жилая площадь, м<sup>2</sup></label>
                             </div>
 
                             <div class="input-field col s6 m4 xl3">
-                                <input type="text" id="kitchen_sq_field" name="kitchen_sq" data-equals-group="1">
+                                <input type="text" id="kitchen_sq_field" name="kitchen_sq">
                                 <label for="kitchen_sq_field">Площадь кухни, м<sup>2</sup></label>
                             </div>
 
