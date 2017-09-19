@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="modxboard" baseClass="xPDOObject" platform="mysql" defaultEngine="myISAM" version="1.1" tablePrefix="modx_board_">
+
+    <object class="TypeItem" table="types" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="title" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+
+        <composite alias="Attributes" class="TypeItemAttribute" local="id" foreign="internalKey" cardinality="many" owner="local" />
+        <composite alias="Ads" class="AdItem" local="id" foreign="type" cardinality="many" owner="local" />        
+    </object>
+
+    <object class="TypeAttribute" table="type_attributes" extends="xPDOSimpleObject">
+
+        <field key="internalKey" dbtype="int" precision="10" phptype="integer" />
+        <field key="attr_id" dbtype="int" precision="10" phptype="integer" />
+
+        <aggregate alias="Type" class="TypeItem" local="internalKey" foreign="id" owner="foreign" />
+        <aggregate alias="Attribute" class="AttributeItem" local="attr_id" foreign="id" owner="foreign" />
+    </object>    
+
+    <object class="AdItem" table="ads" extends="xPDOSimpleObject">
+        <field key="createdby" dbtype="int" precision="10" phptype="integer" null="false" default="0" />
+        <field key="createdon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+        <field key="editedon" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+        <field key="unpub_date" dbtype="int" precision="20" phptype="timestamp" null="false" default="0" />
+        <field key="price" dbtype="int" phptype="integer" null="false" default="0" />
+        <field key="images" dbtype="text" phptype="string" null="false" default="" />
+        <field key="type" dbtype="int" precision="10" phptype="integer" null="false" />
+        <field key="desc" dbtype="text" phptype="string" null="false" default="" />
+        <field key="deposit" dbtype="tinyint" precision="1" phptype="integer" null="false" default="0" />        
+        <field key="active" dbtype="tinyint" precision="1" phptype="integer" null="false" default="0" />        
+
+        <composite alias="Attributes" class="AdAttribute" local="id" foreign="internalKey" cardinality="many" owner="local" />
+        <aggregate alias="Type" class="TypeItem" local="type" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="User" class="modUser" local="createdby" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="AdAttribute" table="ad_attributes" extends="xPDOSimpleObject">
+        <field key="internalKey" dbtype="int" precision="10" phptype="integer" />
+        <field key="attr_id" dbtype="int" precision="10" phptype="integer" null="false" />
+        <field key="value" dbtype="text" phptype="string" null="false" default="" />
+
+        <aggregate alias="Ad" class="AdItem" local="internalKey" foreign="id" cardinality="one" owner="foreign" />
+        <aggregate alias="Attribute" class="AttributeItem" local="attr_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="AttributeItem" table="attributes" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="key" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="field_id" dbtype="int" precision="10" phptype="integer" null="false" />
+        <field key="required" dbtype="tinyint" precision="1" phptype="int" null="false" default="0" />
+
+        <composite alias="TypeAtributes" class="TypeAttribute" local="id" foreign="attr_id" cardinality="many" owner="local" />
+        <composite alias="AdAttributes" class="AdAttribute" local="id" foreign="attr_id" cardinality="many" owner="local" />
+        <composite alias="Values" class="AttributeValue" local="id" foreign="internalKey" cardinality="many" owner="local" />
+        <aggregate alias="Field" class="AttributeField" local="field_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="AttributeValue" table="attribute_values" extends="xPDOSimpleObject">
+        <field key="internalKey" dbtype="int" precision="10" phptype="integer" />
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+
+        <aggregate alias="Attribute" class="AttributeItem" local="internalKey" foreign="id" cardinality="one" owner="foreign" />
+    </object>
+
+    <object class="AttributeField" table="field_settings" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+
+        <composite alias="Attributes" class="Attribute" local="id" foreign="field_id" cardinality="many" owner="local" />
+    </object>
+
+</model>
