@@ -2,4 +2,5 @@ node_modules/
 .vscode/
 .sass-cache/
 gulpfile.js
-src/
+src/css/
+src/scss/materialize

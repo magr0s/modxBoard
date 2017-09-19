@@ -1,0 +1,314 @@
+//==========================================
+// Typography
+//==========================================
+.font-osc {
+
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.font-rc {
+
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.bold {
+
+  font-weight: 700;
+}
+
+.normal {
+
+    font-weight: 400px;
+}
+
+.light {
+
+    font-weight: 300; 
+}
+
+.small{
+
+    font-size: 85%;
+}
+
+.uppercase{
+
+    text-transform: uppercase;
+}
+
+.lowercase{
+    
+    text-transform: lowercase;
+}
+
+//==========================================
+// Layouts
+//==========================================
+
+html {
+    
+    @extend .font-rc;
+}
+
+body {
+
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+
+    flex: 1 0 auto;
+    background: $main-bg-color;
+    position: relative;
+}
+
+.page-wrapper{
+    margin-top: 3rem;
+}
+
+.section {
+    > .divider{
+
+        margin-bottom: 10px;
+    }
+
+    .row{
+
+        margin-bottom: 0;
+    }
+}
+
+//==========================================
+// Paetitle
+//==========================================
+
+.pagetitle {
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+        text-shadow: 1px 1px 0 white;
+
+        @extend .font-osc;
+    }
+}
+
+//==========================================
+// Box and Panel
+//==========================================
+
+.center-box {
+
+    max-width: 300px;
+    margin: auto;
+
+    .panel-title{
+
+        text-align: center;
+    }
+}
+
+.card-panel{
+
+    .panel-title {
+        
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .panel-footer {
+
+        margin-top: 20px;
+    }
+}
+
+.card {
+
+    .card-action {
+
+        @extend .right-align;
+
+        > a{
+
+            display: inline-block;
+            margin: 0!important;
+            text-transform: lowercase!important;
+            @extend .small;
+            @extend .center-align;
+
+            > i {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+//==========================================
+// Form & Controls
+//==========================================
+
+
+.checkbox-field {
+    
+    margin-bottom: 20px;
+    
+    input {
+        + label{
+    
+            height: auto;
+            line-height: normal;            
+        }
+    }
+}
+
+
+.input-field {
+    input{
+        &.validation {
+            + label {
+
+                width: 100%;
+            }        
+        }
+    }
+}
+
+
+.field {
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    label {
+        &.invalid{
+
+            position: relative;
+
+            &:after{
+
+                content: "error_outline";
+                font-family: "Material Icons";
+                font-size: 1rem;
+                position: absolute;
+                margin-top: -11px;
+                top: 50%;
+                right: -20px;
+                
+                @extend .red-text;
+            }
+        }
+    }
+
+    p{
+        margin: 0!important;
+
+        input {
+            + label {
+
+                padding-left: 25px!important;
+
+                + input {
+                    + label {
+                        margin-left: 5px!important;
+                    }
+                }
+            }
+        }
+
+        input[type=checkbox],
+        input[type=radio] {
+            &.validation {
+                &.invalid {
+                    + label {
+                        &:before {
+
+                            border-color: color("red", "base");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$small-and-down} {
+        
+        .switch {
+            float: right;
+        }
+    }
+}
+
+form{
+    .area-title {
+
+        padding: 10px;
+        background: $grey-light;
+        padding: 10px 0;
+        border-left: 2px solid color("teal", "base");
+        
+        @extend h6;
+        @extend .uppercase;
+
+        > i {
+            
+            margin-right: 10px;
+            color: color("grey", "base");
+        }
+    }
+}
+
+.card-panel form .area-title{
+    margin-left: -24px;
+    padding-left: 24px;
+}
+
+//==========================================
+// Breadcrums
+//==========================================
+
+.breadcrumbs-wrapper{
+
+    margin-bottom: 20px;
+    
+    .breadcrumb{
+        color: $off-black;
+        font-size: 85%;
+
+        &:before{
+            color: $off-black;
+            font-size: 125%;
+        }
+    }
+}
+
+//==========================================
+// Margins & Paddings
+//==========================================
+
+.nomargins {
+    margin: 0!important;
+}
+
+.nopadding{
+    padding: 0!important;
+}
+
+.no-tp{
+    padding-top: 0!important;
+}
+
+.no-rp{
+    padding-right: 0!important;
+}
+
+.no-bp{
+    padding-bottom: 0!important;
+}
+
+.no-lp{
+    padding-left: 0!important;
+}

@@ -1,0 +1,13 @@
+#office {
+    .card-profile {
+
+        @media #{$small-and-down} {
+            display: block;
+
+            .card-image{
+
+                margin: 0 auto;
+            }
+        }
+    }
+}
